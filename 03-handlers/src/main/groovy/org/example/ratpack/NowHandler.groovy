@@ -7,7 +7,7 @@ class NowHandler implements Handler {
 
     @Override
     void handle(Context ctx) throws Exception {
-        ctx.response.send new Date().toString()
+        ctx.response.send new Date().toString() + "\n"
     }
 
 

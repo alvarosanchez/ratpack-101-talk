@@ -11,24 +11,12 @@ class RenderSpec extends Specification {
 
   def "01 - can render a String"() {
     expect:
-    getText() == "Hello Greach!"
-
-    /*
-    Hint:
-    Take a look at `ratpack.handling.Context#render(object)`
-    Ratpack already has a renderer for String
-    */
+    getText() == "Hello GeeCON!"
   }
 
   def "02 - can render a Groovy Markup Template"() {
     expect:
-    getText("welcome") == "<!DOCTYPE html><html><body><p>Hello Greach!</p></body></html>"
-
-    /*
-    Hint:
-    Take a look at `ratpack.groovy.template.MarkupTemplateModule`
-    A markup template is already provided in `src/ratpack/templates`
-    */
+    getText("welcome") == "<!DOCTYPE html><html><body><p>Hello GeeCON!</p></body></html>"
   }
 
   def "03 - can render a Book as Json"() {
@@ -54,14 +42,6 @@ class RenderSpec extends Specification {
     and:
     response.headers['content-type'] == 'application/json'
 
-    /*
-    Hint:
-    Take a look at `ratpack.groovy.render.GroovyRendererSupport` to create your own renderer for `Book`
-    Renderers are looked up in the Context by type, you will need to make your new renderer available.
-
-    Ratpack's Jackson module (`ratpack.jackson.Jackson`) has a support for rendering as JSON
-    To use this in your renderer you will need to add a new build dependency on `ratpack-jackson`
-    */
   }
 
   def "04 - can render a Book as Xml"() {
@@ -86,13 +66,6 @@ class RenderSpec extends Specification {
 
     and:
     response.headers['content-type'] == 'application/xml'
-
-    /*
-    Hint:
-    Take a look at `ratpack.groovy.Groovy#markupBuilder(contentType, encoding, closure)`
-
-    Different content types can be rendered using the same renderer using `ratpack.groovy.handling.GroovyContext#byContent(closure)`
-    */
   }
 
 }

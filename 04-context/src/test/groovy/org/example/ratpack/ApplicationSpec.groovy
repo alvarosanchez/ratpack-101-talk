@@ -18,7 +18,6 @@ class ApplicationSpec extends Specification {
         getText('api/foo') == 'foo'
     }
 
-    @Unroll
     void "it renders a random age when /api/foo/age is requested"() {
         when:
         Integer.parseInt(getText("api/foo/age"))

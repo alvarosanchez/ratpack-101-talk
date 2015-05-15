@@ -11,7 +11,7 @@ ratpack {
     }
 
     handler('foo') {
-      render 'bar'
+      render 'bar\n'
     }
 
     prefix('api') {
@@ -21,11 +21,11 @@ ratpack {
         byMethod {
 
           get {
-            render "GET /api/methods"
+            render "GET /api/methods\n"
           }
 
           post {
-            render "POST /api/methods"
+            render "POST /api/methods\n"
           }
 
         }
@@ -35,7 +35,7 @@ ratpack {
 
       handler(':username') {
 
-        render "Hello, $pathTokens.username"
+        render "Hello, $pathTokens.username\n"
 
       }
 

@@ -15,11 +15,11 @@ ratpack {
 
   handlers {
     get {
-      render "Hello Greach!"
+      render "Hello GeeCON!"
     }
 
     get("welcome") {
-      render groovyMarkupTemplate("index.gtpl", welcomeMessage: "Hello Greach!")
+      render groovyMarkupTemplate("index.gtpl", welcomeMessage: "Hello GeeCON!")
     }
 
     get("api/book/:isbn") { BookService bookService ->
