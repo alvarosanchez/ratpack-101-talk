@@ -1,7 +1,7 @@
 import org.example.ratpack.User
 import org.example.ratpack.UsernameHandler
 
-import static ratpack.registry.Registries.just
+import static ratpack.registry.Registry.single
 
 import static ratpack.groovy.Groovy.ratpack
 
@@ -10,15 +10,15 @@ ratpack {
 
     prefix('api/:username') {
 
-      handler {
+      all {
         String username = pathTokens.username
         User user = new User(username: username, age: new Random().nextInt(100))
-        next(just(user))
+        next(single(user))
       }
 
-      handler("age", new UsernameHandler())
+      path("age", new UsernameHandler())
 
-      handler { User user ->
+      all { User user ->
         response.send user.username
       }
 
