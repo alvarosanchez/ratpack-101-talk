@@ -5,18 +5,18 @@ import static ratpack.groovy.Groovy.ratpack
 ratpack {
   handlers {
 
-    handler {
+    all {
       println request.uri
       next()
     }
 
-    handler('foo') {
+    get('foo') {
       render 'bar\n'
     }
 
     prefix('api') {
 
-      handler('methods') {
+      path('methods') {
 
         byMethod {
 
@@ -31,17 +31,13 @@ ratpack {
         }
       }
 
-      handler('now', new NowHandler())
+      path('now', new NowHandler())
 
-      handler(':username') {
-
+      path(':username') {
         render "Hello, $pathTokens.username\n"
-
       }
 
     }
-
-
 
   }
 }
