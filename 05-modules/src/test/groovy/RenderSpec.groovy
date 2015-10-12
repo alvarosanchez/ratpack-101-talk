@@ -11,12 +11,12 @@ class RenderSpec extends Specification {
 
   def "01 - can render a String"() {
     expect:
-    getText() == "Hello GeeCON!"
+    getText() == "Hello JDD!"
   }
 
   def "02 - can render a Groovy Markup Template"() {
     expect:
-    getText("welcome") == "<!DOCTYPE html><html><body><p>Hello GeeCON!</p></body></html>"
+    getText("welcome") == "<!DOCTYPE html><html><body><p>Hello JDD!</p></body></html>"
   }
 
   def "03 - can render a Book as Json"() {

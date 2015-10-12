@@ -1,5 +1,7 @@
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import ratpack.groovy.template.MarkupTemplateModule
-import ratpack.jackson.JacksonModule
+import ratpack.registry.Registry
 
 import static ratpack.groovy.Groovy.groovyMarkupTemplate
 import static ratpack.groovy.Groovy.ratpack
@@ -8,18 +10,20 @@ ratpack {
   bindings {
     bind BookRepository, DefaultBookRepository
     bind BookService, DefaultBookService
-    bind BookRenderer
-    add MarkupTemplateModule
-    add JacksonModule
+
+    module MarkupTemplateModule
   }
 
   handlers {
+
+    register(Registry.single(new BookRenderer()))
+
     get {
-      render "Hello GeeCON!"
+      render "Hello JDD!"
     }
 
     get("welcome") {
-      render groovyMarkupTemplate("index.gtpl", welcomeMessage: "Hello GeeCON!")
+      render groovyMarkupTemplate("index.gtpl", welcomeMessage: "Hello JDD!")
     }
 
     get("api/book/:isbn") { BookService bookService ->

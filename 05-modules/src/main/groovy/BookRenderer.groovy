@@ -7,11 +7,16 @@ import static ratpack.groovy.Groovy.markupBuilder
 class BookRenderer extends GroovyRendererSupport<Book> {
   @Override
   void render(GroovyContext context, Book book) throws Exception {
+
+    println "I'm here"
+
     context.byContent {
       json {
-        render Jackson.json(book)
+        println "This is JSON"
+        context.render Jackson.json(book)
       }
       xml {
+        println "This is XML"
         context.render markupBuilder("application/xml", "UTF-8") {
           person {
             isbn book.isbn
