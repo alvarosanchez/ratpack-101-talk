@@ -1,5 +1,6 @@
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import ratpack.exec.Blocking
 
 import static ratpack.groovy.Groovy.ratpack
 
@@ -9,12 +10,12 @@ ratpack {
 
   handlers {
 
-    handler {
+    all {
 
       LOGGER.info "[1] Beginning of handler"
       String message
 
-      blocking {
+      Blocking.get {
         LOGGER.info "[3] About to start a blocking operation"
         Thread.sleep(1000)
         return "world"
@@ -26,10 +27,10 @@ ratpack {
         message = s
       }
 
-      blocking {
+      Blocking.get {
         LOGGER.info "[6] Second blocking operation"
         Thread.sleep(1000)
-        return "GeeCON"
+        return "JDD"
       }.then { String s ->
         LOGGER.info "[7] Final result"
         response.send("${message} from ${s}\n")
